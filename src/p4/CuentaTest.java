@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 
 class CuentaTest {
 	
-	Cuenta cta = new Cuenta(12345,"", 50.0);
-	Cuenta cta2 = new Cuenta(67890,"", 0.0);
+	Cuenta cta = new Cuenta("12345","adri", 50.0);
+	Cuenta cta2 = new Cuenta("67890","juan", 0.0);
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -40,6 +40,7 @@ class CuentaTest {
 		} 
 	
 	public void testSaldo1() {
+		/*
 		cta.retirar(200.0);
 		cta2.retirar(350.0);
 		cta.ingresar(100.0);
@@ -48,6 +49,29 @@ class CuentaTest {
 		cta.retirar(200.0);
 		cta2.ingresar(50.0);
 		cta2.retirar(100.0);
+		*/
+		
+		try{ cta.retirar(200); }
+        catch(Exception ex){}
+
+        try{ cta2.retirar(350); }
+        catch(Exception ex){}
+        
+        cta.ingresar(100);
+        
+        try {cta2.retirar(200);}
+        catch (Exception e) {}
+        
+        try { cta2.retirar(150); } 
+        catch (Exception e) {}
+        
+        try { cta.retirar(200);} 
+        catch (Exception e) {}
+        
+        cta2.ingresar(50);
+
+        try { cta2.retirar(100); }
+        catch (Exception ex){}
 		
 		
 		assertEquals(-250.0, cta.getSaldo());

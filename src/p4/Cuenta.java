@@ -3,41 +3,50 @@ package p4;
 import java.util.List;
 
 public class Cuenta {
-	public int mNumero;
-	public String Titular;
+	public String mNumero;
+	public String nTitular;
 	public Double saldo = 0.0;
-	public List <Movimiento> mMovimiento;
+	//public List <Movimiento> mMovimiento;
 	
-	public Cuenta() {
-		
+	public Cuenta(String numero, String titular, double saldoI) {
+		super();
+		this.mNumero=numero;
+		this.nTitular=titular;
+		this.saldo=saldoI;
 	}
 	
-	public int getNumero() {
+	public String getNumero() {
 		return this.mNumero;
 	}
 	
 	public String getTitular() {
-		return this.Titular;
+		return this.nTitular;
 	}
 	
 	public Double getSaldo() {
 		return this.saldo;
 	}
 	
-	public Cuenta(int numero, String titular, double saldo) {
-		this.mNumero=numero;
-		this.Titular=titular;
-		this.saldo=saldo;
+	public void setnTitular(String nTitular) {
+        this.nTitular = nTitular;
+    }
+	
+	public void setSaldo(double saldo) {
+        this.saldo = saldo;
 	}
 	
 	
 	
 	public void ingresar(double x) {
-		saldo = saldo + x;
+		this.saldo = this.saldo + x;
 	}
 	
 	
-	public void retirar(double x) {
-		saldo = saldo - x;
+	public void retirar(double x) throws Exception {
+		if(this.saldo - x < -500) {
+            throw new Exception("Operacion no permitida");
+        }
+		
+		this.saldo = this.saldo - x;
 	}
 }
